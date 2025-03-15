@@ -13,5 +13,5 @@ docker run -it --rm \
     -e FORGEJO_DOMAIN="" \
     -e FORGEJO_TOKEN="" \
     -e FORGEJO_USERNAME="" \
-    ghcr.io/sthopeless/docker_gitea2forgejo:latest
+    ghcr.io/sthopeless/gitea2forgejo:latest
 ```

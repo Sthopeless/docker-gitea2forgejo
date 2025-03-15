@@ -29,7 +29,7 @@ for URL in $GET_REPOS; do
             \"repo_name\": \"$REPO_NAME\",
             \"repo_owner\": \"$FORGEJO_USERNAME\",
             \"service\": \"git\",
-            \"wiki\": true
+            \"wiki\": false
         }"
 
     echo "Migration completed for $REPO_NAME."

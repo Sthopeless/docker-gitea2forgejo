@@ -10,7 +10,7 @@ echo "Starting migration from Gitea ($GITEA_DOMAIN) to Forgejo ($FORGEJO_DOMAIN)
 
 # Get all repositories from Gitea user
 GET_REPOS=$(curl -s -H "Authorization: token $GITEA_TOKEN" -H "Accept: application/json" \
-    "$GITEA_HTTP://$GITEA_DOMAIN/api/v1/user/repos?per_page=200" | jq -r --arg USERNAME "$GITEA_USERNAME" --arg TOKEN "$GITEA_TOKEN" '.[] | "https://\($USERNAME):\($TOKEN)@" + .clone_url | sub("https://"; "")')
+    "$GITEA_HTTP://$GITEA_DOMAIN/api/v1/user/repos?per_page=200" | jq -r '.[].clone_url')
 
 # Loop through repositories and migrate them to Forgejo
 for URL in $GET_REPOS; do
@@ -29,7 +29,7 @@ for URL in $GET_REPOS; do
             \"repo_name\": \"$REPO_NAME\",
             \"repo_owner\": \"$FORGEJO_USERNAME\",
             \"service\": \"git\",
-            \"wiki\": false
+            \"wiki\": true
         }"
 
     echo "Migration completed for $REPO_NAME."

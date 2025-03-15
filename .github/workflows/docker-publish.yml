@@ -49,7 +49,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/gitea2forgejo
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
           labels: |
